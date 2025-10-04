@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoestore/models/product.dart';
+import 'package:shoestore/utils/app_textstyles.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -35,16 +36,58 @@ class ProductCard extends StatelessWidget {
               AspectRatio(
                 aspectRatio: 16 / 9,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(12),
-                    ),
-                    child: Image.asset(
-                      product.imageUrl,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                    ),
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+                  child: Image.asset(
+                    product.imageUrl,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
+
+              //favourite button
+              Positioned(
+                right: 8,
+                top: 8,
+                child: IconButton(
+                  icon: Icon(
+                    product.isFavourite
+                        ? Icons.favorite
+                        : Icons.favorite_border,
+                    color: product.isFavourite
+                        ? Theme.of(context).primaryColor
+                        : isDark
+                        ? Colors.grey[400]
+                        : Colors.grey,
+                  ),
+                  onPressed: () {},
+                ),
+              ),
+
+              if(product.oldPrice != null)
+              Positioned(
+                left: 8,
+                top: 8,
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4
+                  ),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+
+                  //discount Text
+                  child: Text(
+                    '',
+                    style: AppTextStyle.withColor(AppTextStyle.withWeight(
+                      AppTextStyle.bodySmall,
+                      FontWeight.bold),Colors.white,
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ],
