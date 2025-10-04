@@ -5,6 +5,7 @@ import 'package:get/state_manager.dart';
 import 'package:shoestore/controllers/theme_controller.dart';
 import 'package:shoestore/view/widgets/category_chips.dart';
 import 'package:shoestore/view/widgets/custom_search_bar.dart';
+import 'package:shoestore/view/widgets/sale_banner.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -78,7 +79,12 @@ class HomeScreen extends StatelessWidget {
             const CustomSearchBar(),
 
             //category chips
-            const CategoryChips()
+            const CategoryChips(),
+
+            //sales banner
+            const SaleBanner(),
+
+
 
 
 

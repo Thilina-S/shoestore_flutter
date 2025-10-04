@@ -58,7 +58,6 @@ class _CategoryChipsState extends State<CategoryChips> {
                   borderRadius: BorderRadius.circular(20),
                 ),
 
-
                 elevation: selectedIndex == index ? 2 : 0,
                 pressElevation: 0,
                 padding: const EdgeInsets.symmetric(
@@ -66,10 +65,16 @@ class _CategoryChipsState extends State<CategoryChips> {
                   vertical: 8,
                 ),
 
+                labelPadding: EdgeInsets.symmetric(horizontal: 4, vertical: 1),
 
-                labelPadding: EdgeInsets.symmetric(
-                  horizontal: 4, 
-                  vertical: 1
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                side: BorderSide(
+                  color: selectedIndex == index
+                      ? Colors.transparent
+                      : isDark
+                      ? Colors.grey[700]!
+                      : Colors.grey[300]!,
+                  width: 1,
                 ),
               ),
             ),
