@@ -5,6 +5,7 @@ import 'package:get/state_manager.dart';
 import 'package:shoestore/controllers/theme_controller.dart';
 import 'package:shoestore/view/widgets/category_chips.dart';
 import 'package:shoestore/view/widgets/custom_search_bar.dart';
+import 'package:shoestore/view/widgets/product_grid.dart';
 import 'package:shoestore/view/widgets/sale_banner.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -105,8 +106,10 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
 
+            //product grid
+            const Expanded(child: ProductGrid(),),
 
-          
+
 
 
 
