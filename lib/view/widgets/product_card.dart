@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/get_utils.dart';
 import 'package:shoestore/models/product.dart';
 import 'package:shoestore/utils/app_textstyles.dart';
 
@@ -64,34 +65,93 @@ class ProductCard extends StatelessWidget {
                 ),
               ),
 
-              if(product.oldPrice != null)
-              Positioned(
-                left: 8,
-                top: 8,
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 4
-                  ),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
+              if (product.oldPrice != null)
+                Positioned(
+                  left: 8,
+                  top: 8,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                      borderRadius: BorderRadius.circular(4),
+                    ),
 
-                  //discount Text
-                  child: Text(
-                    '',
-                    style: AppTextStyle.withColor(AppTextStyle.withWeight(
-                      AppTextStyle.bodySmall,
-                      FontWeight.bold),Colors.white,
+                    //discount Text
+                    child: Text(
+                      '${calculateDiscount(product.price, product.oldPrice!)} % OFF',
+                      style: AppTextStyle.withColor(
+                        AppTextStyle.withWeight(
+                          AppTextStyle.bodySmall,
+                          FontWeight.bold,
+                        ),
+                        Colors.white,
+                      ),
                     ),
                   ),
                 ),
-              )
             ],
+          ),
+
+          //product details
+          Padding(
+            padding: EdgeInsets.all(
+              screenWidth * 0.02
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  product.name,
+                  style: AppTextStyle.withColor(
+                    AppTextStyle.withWeight(AppTextStyle.h3, FontWeight.bold),
+                    Theme.of(context).textTheme.bodyLarge!.color!,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                SizedBox(height: screenWidth * 0.01),
+                Text(
+                  product.category,
+                  style: AppTextStyle.withColor(
+                    AppTextStyle.bodyMedium,
+                    isDark ? Colors.grey[400]! : Colors.grey[600]!,
+                  ),
+                ),
+                SizedBox(height: screenWidth * 0.01),
+                Row(
+                  children: [
+                    Text(
+                      '\$${product.price.toStringAsFixed(2)}',
+                      style: AppTextStyle.withColor(
+                        AppTextStyle.withWeight(
+                          AppTextStyle.bodyLarge,
+                          FontWeight.bold,
+                        ),
+                        Theme.of(context).textTheme.bodyLarge!.color!,
+                      ),
+                    ),
+                    if (product.oldPrice != null) ...[
+                      SizedBox(width: screenWidth * 0.01),
+                      Text(
+                        '\$${product.oldPrice!.toStringAsFixed(2)}',
+                        style: AppTextStyle.withColor(
+                          AppTextStyle.bodySmall,
+                          isDark ? Colors.grey[400]! : Colors.grey[600]!,
+                        ).copyWith(decoration: TextDecoration.lineThrough),
+                      ),
+                    ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),
     );
+  }
+
+  //calculate discount
+  int calculateDiscount(double currentPrice, double oldPrice) {
+    return (((oldPrice - currentPrice) / oldPrice) * 100).round();
   }
 }
