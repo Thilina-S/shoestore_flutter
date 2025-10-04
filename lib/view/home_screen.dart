@@ -74,7 +74,6 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
 
-
             //search bar
             const CustomSearchBar(),
 
@@ -84,8 +83,30 @@ class HomeScreen extends StatelessWidget {
             //sales banner
             const SaleBanner(),
 
+            //popular products section
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Popular Products',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+
+                  GestureDetector(
+                    onTap: () {},
+                    child: Text(
+                      'See All',
+                      style: TextStyle(color: Theme.of(context).primaryColor),
+                    ),
+                  ),
+                ],
+              ),
+            ),
 
 
+          
 
 
 
