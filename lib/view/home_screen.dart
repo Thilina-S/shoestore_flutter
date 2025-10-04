@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:get/state_manager.dart';
 import 'package:shoestore/controllers/theme_controller.dart';
+import 'package:shoestore/view/widgets/category_chips.dart';
 import 'package:shoestore/view/widgets/custom_search_bar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -75,6 +76,9 @@ class HomeScreen extends StatelessWidget {
 
             //search bar
             const CustomSearchBar(),
+
+            //category chips
+            const CategoryChips()
 
 
 
