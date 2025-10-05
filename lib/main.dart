@@ -12,7 +12,7 @@ void main() async {
   Get.put(ThemeController());
   Get.put(AuthController());
   Get.put(NavigationController());
-  runApp(const MyApp());
+  runApp(const MyApp()); 
 }
 
 class MyApp extends StatelessWidget {
