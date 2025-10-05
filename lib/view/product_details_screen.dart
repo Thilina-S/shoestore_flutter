@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shoestore/models/product.dart';
 import 'package:shoestore/utils/app_textstyles.dart';
+import 'package:shoestore/view/widgets/size_selector.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   final Product product;
@@ -46,6 +47,7 @@ class ProductDetailsScreen extends StatelessWidget {
 
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Stack(
               children: [
@@ -65,14 +67,65 @@ class ProductDetailsScreen extends StatelessWidget {
                     onPressed: () {},
                     icon: Icon(
                       product.isFavourite
-                      ?Icons.favorite
-                      :Icons.favorite_border,
-                    color: product.isFavourite
-                     ?Theme.of(context).primaryColor
-                     :(isDark ? Colors.white : Colors.black),
-                    ),),
+                          ? Icons.favorite
+                          : Icons.favorite_border,
+                      color: product.isFavourite
+                          ? Theme.of(context).primaryColor
+                          : (isDark ? Colors.white : Colors.black),
+                    ),
+                  ),
                 ),
               ],
+            ),
+
+            // Product details
+            Padding(
+              padding: EdgeInsets.all(screenWidth * 0.04),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          product.name,
+                          style: AppTextStyle.withColor(
+                            AppTextStyle.h2,
+                            Theme.of(context).textTheme.headlineMedium!.color!,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        '\$${product.price.toStringAsFixed(2)}',
+                        style: AppTextStyle.withColor(
+                          AppTextStyle.h2,
+                          Theme.of(context).textTheme.headlineMedium!.color!,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  Text(
+                        product.category,
+                        style: AppTextStyle.withColor(
+                          AppTextStyle.bodyMedium,
+                          isDark ? Colors.grey[400]! : Colors.grey[600]!,
+                        ),
+                      ),
+                      SizedBox(height: screenHeight * 0.02),
+                      Text(
+                        'Select Size',
+                        style: AppTextStyle.withColor(
+                          AppTextStyle.labelMedium,
+                          Theme.of(context).textTheme.bodyLarge!.color!,
+                        ),
+                      ),
+
+                      SizedBox(height: screenHeight * 0.01),
+                      //size selector
+                      const SizeSelector(),
+                ],
+              ),
             ),
           ],
         ),
