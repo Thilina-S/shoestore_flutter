@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shoestore/utils/app_textstyles.dart';
+import 'package:shoestore/view/widgets/filter_bottom_sheet.dart';
 
 class AllProductsScreen extends StatelessWidget {
   const AllProductsScreen({super.key});
@@ -38,7 +39,7 @@ class AllProductsScreen extends StatelessWidget {
 
           //filter icon
           IconButton(
-            onPressed: () => FilterBottomSheet(),
+            onPressed: () => FilterBottomSheet.show(context),
             icon: Icon(
               Icons.filter_list,
               color: isDark ? Colors.white : Colors.black,
