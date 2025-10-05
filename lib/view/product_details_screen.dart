@@ -44,10 +44,39 @@ class ProductDetailsScreen extends StatelessWidget {
         ],
       ),
 
-      
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                //image
+                AspectRatio(
+                  aspectRatio: 16 / 9,
+                  child: Image.asset(
+                    product.imageUrl,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
+                ),
 
-
-
+                //favourite button
+                Positioned(
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      product.isFavourite
+                      ?Icons.favorite
+                      :Icons.favorite_border,
+                    color: product.isFavourite
+                     ?Theme.of(context).primaryColor
+                     :(isDark ? Colors.white : Colors.black),
+                    ),),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 
