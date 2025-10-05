@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shoestore/utils/app_textstyles.dart';
 import 'package:shoestore/view/widgets/filter_bottom_sheet.dart';
+import 'package:shoestore/view/widgets/product_grid.dart';
 
 class AllProductsScreen extends StatelessWidget {
   const AllProductsScreen({super.key});
@@ -47,6 +48,7 @@ class AllProductsScreen extends StatelessWidget {
           ),
         ],
       ),
+      body: const ProductGrid(),
     );
   }
 }

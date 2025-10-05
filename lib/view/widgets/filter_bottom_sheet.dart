@@ -120,13 +120,16 @@ class FilterBottomSheet {
                             selected: category == 'All',
                             onSelected: (selected) {},
                             backgroundColor: Theme.of(context).cardColor,
-                            selectedColor: 
-                            Theme.of(context).primaryColor.withOpacity(0.2),
+                            selectedColor: Theme.of(
+                              context,
+                            ).primaryColor.withOpacity(0.2),
                             labelStyle: AppTextStyle.withColor(
                               AppTextStyle.bodyMedium,
                               category == 'All'
                                   ? Theme.of(context).primaryColor
-                                  : Theme.of(context).textTheme.bodyLarge!.color!,
+                                  : Theme.of(
+                                      context,
+                                    ).textTheme.bodyLarge!.color!,
                             ),
                           ),
                         )
@@ -138,22 +141,22 @@ class FilterBottomSheet {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () => Get.back(),
-                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).primaryColor,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  )
-                 ),
-                 child: Text(
-                  'Apply Filters',
-                  style: AppTextStyle.withColor(
-                    AppTextStyle.buttonMedium,
-                    Colors.white,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor : Theme.of(context).primaryColor,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
-                 ),
-                 ),
-              )
+                  child: Text(
+                    'Apply Filters',
+                    style: AppTextStyle.withColor(
+                      AppTextStyle.buttonMedium,
+                      Colors.white,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
