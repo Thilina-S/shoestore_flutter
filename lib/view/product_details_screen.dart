@@ -161,7 +161,7 @@ class ProductDetailsScreen extends StatelessWidget {
                     ),
                     side: BorderSide(
                       color: isDark ? Colors.white70 : Colors.black12,
-                    )
+                    ),
                   ),
                   child: Text(
                     'Add to Cart',
@@ -169,7 +169,7 @@ class ProductDetailsScreen extends StatelessWidget {
                       AppTextStyle.buttonMedium,
                       Theme.of(context).textTheme.bodyLarge!.color!,
                     ),
-                    ),
+                  ),
                 ),
               ),
 
@@ -190,12 +190,9 @@ class ProductDetailsScreen extends StatelessWidget {
                       AppTextStyle.buttonMedium,
                       Colors.white,
                     ),
-                    ),
+                  ),
                 ),
               ),
-
-
-
             ],
           ),
         ),

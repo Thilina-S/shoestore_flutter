@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:get/state_manager.dart';
 import 'package:shoestore/controllers/theme_controller.dart';
+import 'package:shoestore/view/all_products_screen.dart';
 import 'package:shoestore/view/widgets/category_chips.dart';
 import 'package:shoestore/view/widgets/custom_search_bar.dart';
 import 'package:shoestore/view/widgets/product_grid.dart';
@@ -96,7 +98,7 @@ class HomeScreen extends StatelessWidget {
                   ),
 
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () => Get.to(()=> const AllProductsScreen()),
                     child: Text(
                       'See All',
                       style: TextStyle(color: Theme.of(context).primaryColor),
