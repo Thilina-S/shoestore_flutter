@@ -6,6 +6,7 @@ import 'package:get/state_manager.dart';
 import 'package:shoestore/controllers/theme_controller.dart';
 import 'package:shoestore/view/all_products_screen.dart';
 import 'package:shoestore/view/cart_screen.dart';
+import 'package:shoestore/view/notifications/view/notifications_screen.dart';
 import 'package:shoestore/view/widgets/category_chips.dart';
 import 'package:shoestore/view/widgets/custom_search_bar.dart';
 import 'package:shoestore/view/widgets/product_grid.dart';
@@ -53,7 +54,7 @@ class HomeScreen extends StatelessWidget {
 
                   //notification icon
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () => Get.to(()=> const NotificationsScreen()),
                     icon: Icon(Icons.notifications_outlined),
                   ),
 
