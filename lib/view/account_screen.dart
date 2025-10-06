@@ -23,7 +23,7 @@ class AccountScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => Get.to(()=> SettingScreen()),
             icon: Icon(
               Icons.settings_outlined,
               color: isDark ? Colors.white : Colors.black,
