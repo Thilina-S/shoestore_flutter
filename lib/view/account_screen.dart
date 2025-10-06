@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shoestore/controllers/auth_controllers.dart';
 import 'package:shoestore/utils/app_textstyles.dart';
+import 'package:shoestore/view/my%20orders/view/screeens/my_orders_screen.dart';
+import 'package:shoestore/view/settings_screen.dart';
 import 'package:shoestore/view/signin_screen.dart';
 
 class AccountScreen extends StatelessWidget {
@@ -23,7 +25,7 @@ class AccountScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () => Get.to(()=> SettingScreen()),
+            onPressed: () => Get.to(() => SettingsScreen()),
             icon: Icon(
               Icons.settings_outlined,
               color: isDark ? Colors.white : Colors.black,
@@ -149,7 +151,7 @@ class AccountScreen extends StatelessWidget {
                 if (item['title'] == 'Logout') {
                   _showLogoutDialog(context);
                 } else if (item['title'] == 'My Orders') {
-                  //navigate to my order screen
+                  Get.to(() =>const MyOrdersScreen());
                 } else if (item['title'] == 'Shipping Address') {
                   //navigate to shipping address screen
                 } else if (item['title'] == 'Help Center') {
@@ -230,7 +232,7 @@ class AccountScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       final AuthController authController =
-                      Get.find<AuthController>();
+                          Get.find<AuthController>();
                       authController.logout();
                       Get.offAll(() => SigninScreen());
                     },
