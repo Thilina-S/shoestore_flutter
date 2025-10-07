@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
-import 'package:get/state_manager.dart';
 import 'package:shoestore/controllers/theme_controller.dart';
 import 'package:shoestore/view/all_products_screen.dart';
 import 'package:shoestore/view/cart_screen.dart';
@@ -54,13 +51,13 @@ class HomeScreen extends StatelessWidget {
 
                   //notification icon
                   IconButton(
-                    onPressed: () => Get.to(()=>  NotificationsScreen()),
+                    onPressed: () => Get.to(() => NotificationsScreen()),
                     icon: Icon(Icons.notifications_outlined),
                   ),
 
                   //cart button
                   IconButton(
-                    onPressed: () => Get.to(()=> const CartScreen()),
+                    onPressed: () => Get.to(() => const CartScreen()),
                     icon: Icon(Icons.shopping_bag_outlined),
                   ),
 
@@ -100,7 +97,7 @@ class HomeScreen extends StatelessWidget {
                   ),
 
                   GestureDetector(
-                    onTap: () => Get.to(()=> const AllProductsScreen()),
+                    onTap: () => Get.to(() => const AllProductsScreen()),
                     child: Text(
                       'See All',
                       style: TextStyle(color: Theme.of(context).primaryColor),
@@ -111,12 +108,7 @@ class HomeScreen extends StatelessWidget {
             ),
 
             //product grid
-            const Expanded(child: ProductGrid(),),
-
-
-
-
-
+            const Expanded(child: ProductGrid()),
           ],
         ),
       ),
