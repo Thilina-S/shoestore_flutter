@@ -10,6 +10,7 @@ class CustomTextfield extends StatefulWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
+  final String? initialValue;
 
   const CustomTextfield({
     super.key,
@@ -20,6 +21,7 @@ class CustomTextfield extends StatefulWidget {
     this.controller,
     this.validator,
     this.onChanged,
+    this.initialValue,
   });
 
   @override
@@ -35,6 +37,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
 
     return TextFormField(
       controller: widget.controller,
+      initialValue: widget.initialValue,
       obscureText: widget.isPassword && _obscureText,
       keyboardType: widget.keyboardType,
       validator: widget.validator,
@@ -51,55 +54,49 @@ class _CustomTextfieldState extends State<CustomTextfield> {
         ),
         prefixIcon: Icon(
           widget.prefixIcon,
-          color: isDark?Colors.grey[400] : Colors.grey[600],
+          color: isDark ? Colors.grey[400] : Colors.grey[600],
         ),
         suffixIcon: widget.isPassword
-         ? IconButton(
-          onPressed: (){
-            setState(() {
-              _obscureText = !_obscureText;
-            });
-          }, icon: Icon(
-            _obscureText ? Icons.visibility_off : Icons.visibility,
+            ? IconButton(
+                onPressed: () {
+                  setState(() {
+                    _obscureText = !_obscureText;
+                  });
+                },
+                icon: Icon(
+                  _obscureText ? Icons.visibility_off : Icons.visibility,
+                ),
+              )
+            : null,
+
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(
+            color: isDark ? Colors.grey[700]! : Colors.grey[300]!,
           ),
-        )
-      :null,
-
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(
-          color: isDark ? Colors.grey[700]! : Colors.grey[300]!,
-        )
-      ),
-
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(
-          color: isDark ? Colors.grey[700]! : Colors.grey[300]!,
         ),
-      ),
 
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(
-          color: Theme.of(context).primaryColor,
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(
+            color: isDark ? Colors.grey[700]! : Colors.grey[300]!,
+          ),
         ),
-      ),
+
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: Theme.of(context).primaryColor),
+        ),
 
         errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(
-          color: Theme.of(context).colorScheme.error,
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
         ),
-      ),
 
         focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(
-          color: Theme.of(context).colorScheme.error,
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
         ),
-      ),
-
       ),
     );
   }

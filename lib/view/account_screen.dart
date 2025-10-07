@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shoestore/controllers/auth_controllers.dart';
 import 'package:shoestore/utils/app_textstyles.dart';
+import 'package:shoestore/view/edit%20profile/screens/edit_profile_screen.dart';
 import 'package:shoestore/view/my%20orders/view/screeens/my_orders_screen.dart';
 import 'package:shoestore/view/settings_screen.dart';
 import 'package:shoestore/view/shipping%20address/shipping_address_screen.dart';
@@ -82,7 +83,7 @@ class AccountScreen extends StatelessWidget {
           const SizedBox(height: 16),
 
           OutlinedButton(
-            onPressed: () {},
+            onPressed: () => Get.to(()=>const EditProfileScreen()),
             style: OutlinedButton.styleFrom(
               padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
               side: BorderSide(color: isDark ? Colors.white70 : Colors.black12),
