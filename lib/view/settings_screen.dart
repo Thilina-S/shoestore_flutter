@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shoestore/controllers/theme_controller.dart';
 import 'package:shoestore/utils/app_textstyles.dart';
+import 'package:shoestore/view/privacy%20policy/screens/privacy_policy_screen.dart';
+
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -9,6 +11,7 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
@@ -31,13 +34,15 @@ class SettingsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildSection(context, 'Appearance', [_buildThemeToggle(context)]),
+            _buildSection(context, 'Appearance', [
+              _buildThemeToggle(context),
+            ]),
 
             _buildSection(context, 'Notifications', [
               _buildSwitchTile(
                 context,
                 'Push Notifications',
-                'Receive push notifications about the orders and promotions',
+                'Receive push notifications about orders and promotions',
                 true,
               ),
               _buildSwitchTile(
@@ -48,24 +53,26 @@ class SettingsScreen extends StatelessWidget {
               ),
             ]),
 
-            _buildSection(context, 'privacy', [
+            _buildSection(context, 'Privacy', [
               _buildNavigationTile(
                 context,
                 'Privacy Policy',
                 'View our privacy policy',
                 Icons.privacy_tip_outlined,
+                onTap: () => Get.to(() => const PrivacyPolicyScreen()),
               ),
               _buildNavigationTile(
                 context,
                 'Terms of Service',
-                'Read our terms of services',
+                'Read our terms of service',
                 Icons.description_outlined,
               ),
             ]),
+
             _buildSection(context, 'About', [
               _buildNavigationTile(
                 context,
-                'App verion',
+                'App Version',
                 '1.0.0',
                 Icons.info_outline,
               ),
@@ -76,6 +83,7 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
+  // SECTION BUILDER
   Widget _buildSection(
     BuildContext context,
     String title,
@@ -96,10 +104,12 @@ class SettingsScreen extends StatelessWidget {
             ),
           ),
         ),
+        ...children, // ✅ added missing children
       ],
     );
   }
 
+  // THEME TOGGLE
   Widget _buildThemeToggle(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
@@ -141,59 +151,66 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
+  // SWITCH TILE
   Widget _buildSwitchTile(
     BuildContext context,
     String title,
     String subtitle,
-    bool initialValue,
-  ) {
+    bool initialValue, {
+    VoidCallback? onTap,
+  }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: isDark
-                ? Colors.black.withOpacity(0.2)
-                : Colors.grey.withOpacity(0.1),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: ListTile(
-        title: Text(
-          title,
-          style: AppTextStyle.withColor(
-            AppTextStyle.bodyMedium,
-            Theme.of(context).textTheme.bodyLarge!.color!,
-          ),
-        ),
 
-        subtitle: Text(
-          subtitle,
-          style: AppTextStyle.withColor(
-            AppTextStyle.bodySmall,
-            isDark ? Colors.grey[400]! : Colors.grey[600]!,
-          ),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          color: Theme.of(context).cardColor,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: isDark
+                  ? Colors.black.withOpacity(0.2)
+                  : Colors.grey.withOpacity(0.1),
+              blurRadius: 8,
+              offset: const Offset(0, 2),
+            ),
+          ],
         ),
-        trailing: Switch(
-          value: initialValue,
-          onChanged: (value) {},
-          activeColor: Theme.of(context).primaryColor,
+        child: ListTile(
+          title: Text(
+            title,
+            style: AppTextStyle.withColor(
+              AppTextStyle.bodyMedium,
+              Theme.of(context).textTheme.bodyLarge!.color!,
+            ),
+          ),
+          subtitle: Text(
+            subtitle,
+            style: AppTextStyle.withColor(
+              AppTextStyle.bodySmall,
+              isDark ? Colors.grey[400]! : Colors.grey[600]!,
+            ),
+          ),
+          trailing: Switch(
+            value: initialValue,
+            onChanged: (value) {},
+            activeColor: Theme.of(context).primaryColor,
+          ),
         ),
       ),
     );
   }
 
+  // NAVIGATION TILE
   Widget _buildNavigationTile(
     BuildContext context,
     String title,
     String subtitle,
-    IconData icon,
-  ) {
+    IconData icon, {
+    VoidCallback? onTap,
+  }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
@@ -212,6 +229,7 @@ class SettingsScreen extends StatelessWidget {
         ],
       ),
       child: ListTile(
+        onTap: onTap,
         leading: Icon(icon, color: Theme.of(context).primaryColor),
         title: Text(
           title,
@@ -220,7 +238,6 @@ class SettingsScreen extends StatelessWidget {
             Theme.of(context).textTheme.bodyLarge!.color!,
           ),
         ),
-
         subtitle: Text(
           subtitle,
           style: AppTextStyle.withColor(
@@ -228,7 +245,6 @@ class SettingsScreen extends StatelessWidget {
             isDark ? Colors.grey[400]! : Colors.grey[600]!,
           ),
         ),
-
         trailing: Icon(
           Icons.chevron_right,
           color: isDark ? Colors.grey[400] : Colors.grey[600],
