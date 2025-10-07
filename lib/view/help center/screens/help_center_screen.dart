@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shoestore/utils/app_textstyles.dart';
+import 'package:shoestore/view/help%20center/widgets/contact_support_section.dart';
 import 'package:shoestore/view/help%20center/widgets/help_categories_section.dart';
 import 'package:shoestore/view/help%20center/widgets/popular_questions_section.dart';
 
@@ -37,6 +38,9 @@ class HelpCenterScreen extends StatelessWidget {
           const PopularQuestionsSection(),
           const SizedBox(height: 24),
           const HelpCategoriesSection(),
+          const SizedBox(height: 24),
+          const ContactSupportSection(),
+
           ],
         ),
       ),
