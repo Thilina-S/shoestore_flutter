@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:shoestore/controllers/auth_controllers.dart';
 import 'package:shoestore/utils/app_textstyles.dart';
 import 'package:shoestore/view/edit%20profile/screens/edit_profile_screen.dart';
+import 'package:shoestore/view/help%20center/screens/help_center_screen.dart';
 import 'package:shoestore/view/my%20orders/view/screeens/my_orders_screen.dart';
 import 'package:shoestore/view/settings_screen.dart';
 import 'package:shoestore/view/shipping%20address/shipping_address_screen.dart';
@@ -157,7 +158,7 @@ class AccountScreen extends StatelessWidget {
                 } else if (item['title'] == 'Shipping Address') {
                   Get.to(() =>  ShippingAddressScreen());
                 } else if (item['title'] == 'Help Center') {
-                  //navigate to help center screen
+                  Get.to(() =>  const HelpCenterScreen());
                 }
               },
             ),
