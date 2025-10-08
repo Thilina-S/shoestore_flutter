@@ -48,8 +48,8 @@ class ProductCard extends StatelessWidget {
 
               //favourite button
               Positioned(
-                right: 8,
-                top: 8,
+                right: 2,
+                top: 1,
                 child: IconButton(
                   icon: Icon(
                     product.isFavourite
