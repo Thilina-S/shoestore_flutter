@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:shoestore/controllers/theme_controller.dart';
 import 'package:shoestore/utils/app_textstyles.dart';
 import 'package:shoestore/view/privacy%20policy/screens/privacy_policy_screen.dart';
+import 'package:shoestore/view/terms%20of%20service/screen/terms_of_service_screen.dart';
 
 
 class SettingsScreen extends StatelessWidget {
@@ -66,6 +67,7 @@ class SettingsScreen extends StatelessWidget {
                 'Terms of Service',
                 'Read our terms of service',
                 Icons.description_outlined,
+                onTap: () => Get.to(() => const TermsOfServiceScreen()),
               ),
             ]),
 
