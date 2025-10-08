@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shoestore/utils/app_textstyles.dart';
 import 'package:shoestore/view/checkout/widgets/address_card.dart';
+import 'package:shoestore/view/checkout/widgets/checkout_bottom_bar.dart';
 import 'package:shoestore/view/checkout/widgets/order_summary_card.dart';
 import 'package:shoestore/view/checkout/widgets/payment_method_card.dart';
+import 'package:shoestore/view/order%20confirmation/screens/order_confirmation_screen.dart';
 import 'package:shoestore/view/shipping%20address/widgets/address_card.dart';
 
 class CheckoutScreen extends StatelessWidget {
@@ -35,21 +37,33 @@ class CheckoutScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-          _buildSectionTitle(context, 'Shipping Address'),
-          const SizedBox(height: 16),
-          const AddressCardShipping(),
-          const SizedBox(height: 24),
-          _buildSectionTitle(context, 'Payment Method'),
-          const SizedBox(height: 16),
-          const PaymentMethodCard(),
-          const SizedBox(height: 24),
-          _buildSectionTitle(context, 'Order Summary'),
-          const SizedBox(height: 16),
-          const OrderSummaryCard(),
+            _buildSectionTitle(context, 'Shipping Address'),
+            const SizedBox(height: 16),
+            const AddressCardShipping(),
+            const SizedBox(height: 24),
+            _buildSectionTitle(context, 'Payment Method'),
+            const SizedBox(height: 16),
+            const PaymentMethodCard(),
+            const SizedBox(height: 24),
+            _buildSectionTitle(context, 'Order Summary'),
+            const SizedBox(height: 16),
+            const OrderSummaryCard(),
           ],
         ),
       ),
-      bottomNavigationBar: CheckoutBottomBar(),
+      bottomNavigationBar: CheckoutBottomBar(
+        totalAmount: 662.23,
+        onPlaceOrder: () {
+          //generate a random order number(in real app, this would come from backend)
+          final orderNumber =
+              'ORD${DateTime.now().millisecondsSinceEpoch.toString().substring(7)}';
+
+          Get.to(() =>  OrderConfirmationScreen(
+            orderNumber: orderNumber,
+            totalAmount: 662.23,
+          ));
+        },
+      ),
     );
   }
 
