@@ -65,7 +65,7 @@ class OrderCard extends StatelessWidget {
                       const SizedBox(width: 4),
 
                       Text(
-                        '${order.itemCount} items . \$${order.totalAmount.toStringAsFixed(2)}}',
+                        '${order.itemCount} items  \$${order.totalAmount.toStringAsFixed(2)}',
                         style: AppTextStyle.withColor(
                           AppTextStyle.bodyMedium,
                           isDark ? Colors.grey[400]! : Colors.grey[600]!,

@@ -35,17 +35,17 @@ class CartScreen extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               itemCount: products.length,
               itemBuilder: (context, index) =>
-                  __buildCartItem(context, products[index]),
+                  _buildCartItem(context, products[index]),
             ),
           ),
-
           _buildCartSummary(context),
         ],
       ),
     );
   }
 
-  Widget __buildCartItem(BuildContext context, Product product) {
+  /// 🛒 Build Cart Item Widget
+  Widget _buildCartItem(BuildContext context, Product product) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
@@ -65,7 +65,7 @@ class CartScreen extends StatelessWidget {
       ),
       child: Row(
         children: [
-          //product image
+          /// 🖼️ Product Image
           ClipRRect(
             borderRadius: const BorderRadius.horizontal(
               left: Radius.circular(16),
@@ -82,6 +82,7 @@ class CartScreen extends StatelessWidget {
               padding: const EdgeInsets.all(12),
               child: Column(
                 children: [
+                  /// Product Name + Delete Button
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -107,6 +108,8 @@ class CartScreen extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 8),
+
+                  /// Price + Quantity Buttons
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -117,12 +120,11 @@ class CartScreen extends StatelessWidget {
                           Theme.of(context).primaryColor,
                         ),
                       ),
-
                       Container(
                         decoration: BoxDecoration(
-                          color: Theme.of(
-                            context,
-                          ).primaryColor.withOpacity(0.1),
+                          color: Theme.of(context)
+                              .primaryColor
+                              .withOpacity(0.1),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Row(
@@ -164,14 +166,16 @@ class CartScreen extends StatelessWidget {
     );
   }
 
+  /// ❌ Delete Confirmation Dialog
   void _showDeleteConfirmationDialog(BuildContext context, Product product) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     Get.dialog(
       AlertDialog(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
         contentPadding: const EdgeInsets.all(24),
         content: Column(
           mainAxisSize: MainAxisSize.min,
@@ -196,17 +200,15 @@ class CartScreen extends StatelessWidget {
                 Theme.of(context).textTheme.bodyLarge!.color!,
               ),
             ),
-
             const SizedBox(height: 8),
             Text(
-              'Are you sure you want to remove this item from your cart ?',
+              'Are you sure you want to remove this item from your cart?',
               textAlign: TextAlign.center,
               style: AppTextStyle.withColor(
                 AppTextStyle.bodyMedium,
                 isDark ? Colors.grey[400]! : Colors.grey[600]!,
               ),
             ),
-
             const SizedBox(height: 24),
             Row(
               children: [
@@ -223,7 +225,7 @@ class CartScreen extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      'cancel',
+                      'Cancel',
                       style: AppTextStyle.withColor(
                         AppTextStyle.bodyMedium,
                         Theme.of(context).textTheme.bodyLarge!.color!,
@@ -231,16 +233,14 @@ class CartScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 const SizedBox(width: 16),
-
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      //add delete logic here
+                      // TODO: add delete logic here
                       Get.back();
                     },
-                    style: OutlinedButton.styleFrom(
+                    style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red[400],
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       shape: RoundedRectangleBorder(
@@ -265,6 +265,7 @@ class CartScreen extends StatelessWidget {
     );
   }
 
+  /// 💰 Bottom Summary Widget
   Widget _buildCartSummary(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(24),
@@ -292,7 +293,6 @@ class CartScreen extends StatelessWidget {
                   Theme.of(context).textTheme.bodyLarge!.color!,
                 ),
               ),
-
               Text(
                 '\$599.99',
                 style: AppTextStyle.withColor(
@@ -306,7 +306,7 @@ class CartScreen extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () => Get.to(()=> const CheckoutScreen()),
+              onPressed: () => Get.to(() => const CheckoutScreen()),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Theme.of(context).primaryColor,
                 padding: const EdgeInsets.symmetric(vertical: 16),
@@ -315,12 +315,12 @@ class CartScreen extends StatelessWidget {
                 ),
               ),
               child: Text(
-                'Proceed to checkout',
+                'Proceed to Checkout',
                 style: AppTextStyle.withColor(
                   AppTextStyle.buttonMedium,
                   Colors.white,
                 ),
-              )
+              ),
             ),
           ),
         ],

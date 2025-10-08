@@ -14,30 +14,37 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Column(
           children: [
-            //header section
+            // 🧠 Header Section
             Padding(
               padding: const EdgeInsets.all(16),
               child: Row(
                 children: [
-                  CircleAvatar(
+                  // 👤 Profile Avatar
+                  const CircleAvatar(
                     radius: 20,
                     backgroundImage: AssetImage('assets/images/avatar.jpg'),
                   ),
+                  const SizedBox(width: 12),
 
-                  SizedBox(width: 12),
+                  // 👋 Greeting Text
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Hello Thilina,',
-                        style: TextStyle(fontSize: 14, color: Colors.grey),
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: isDark ? Colors.grey[400] : Colors.grey[600],
+                        ),
                       ),
-                      Text(
+                      const Text(
                         'Good Morning,',
                         style: TextStyle(
                           fontSize: 16,
@@ -49,26 +56,33 @@ class HomeScreen extends StatelessWidget {
 
                   const Spacer(),
 
-                  //notification icon
+                  // 🔔 Notification Icon
                   IconButton(
-                    onPressed: () => Get.to(() => NotificationsScreen()),
-                    icon: Icon(Icons.notifications_outlined),
+                    onPressed: () => Get.to(() =>  NotificationsScreen()),
+                    icon: Icon(
+                      Icons.notifications_outlined,
+                      color: isDark ? Colors.white : Colors.black,
+                    ),
                   ),
 
-                  //cart button
+                  // 🛒 Cart Icon
                   IconButton(
                     onPressed: () => Get.to(() => const CartScreen()),
-                    icon: Icon(Icons.shopping_bag_outlined),
+                    icon: Icon(
+                      Icons.shopping_bag_outlined,
+                      color: isDark ? Colors.white : Colors.black,
+                    ),
                   ),
 
-                  //theme button
+                  // 🌗 Theme Toggle
                   GetBuilder<ThemeController>(
                     builder: (controller) => IconButton(
-                      onPressed: () => controller.toggleTheme(),
+                      onPressed: controller.toggleTheme,
                       icon: Icon(
                         controller.isDarkMode
                             ? Icons.light_mode
                             : Icons.dark_mode,
+                        color: isDark ? Colors.white : Colors.black,
                       ),
                     ),
                   ),
@@ -76,16 +90,16 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
 
-            //search bar
+            // 🔍 Search Bar
             const CustomSearchBar(),
 
-            //category chips
+            // 🏷️ Category Chips
             const CategoryChips(),
 
-            //sales banner
+            // 🏷️ Sale Banner
             const SaleBanner(),
 
-            //popular products section
+            // 📦 Popular Products Title Row
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Row(
@@ -93,21 +107,26 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   const Text(
                     'Popular Products',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-
                   GestureDetector(
                     onTap: () => Get.to(() => const AllProductsScreen()),
                     child: Text(
                       'See All',
-                      style: TextStyle(color: Theme.of(context).primaryColor),
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
 
-            //product grid
+            // 🧩 Product Grid
             const Expanded(child: ProductGrid()),
           ],
         ),

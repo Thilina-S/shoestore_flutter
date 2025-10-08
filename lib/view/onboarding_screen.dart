@@ -20,17 +20,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     OnboardingItem(
       description: 'Explore the newest trends and find your unique style.',
       title: 'Discover Latest Trends',
-      image: 'assests/images/intro.png',
+      image: 'assets/images/intro.png',
     ),
     OnboardingItem(
       description: 'Shoop premium quality products from top brands worldwide.',
       title: 'Quality products',
-      image: 'assests/images/intro1.png',
+      image: 'assets/images/intro1.png',
     ),
     OnboardingItem(
       description: 'Simple and secure shopping experience at your fingertips.',
       title: 'Easy Shopping',
-      image: 'assests/images/intro2.png.',
+      image: 'assets/images/intro2.png.',
     ),
   ];
 
